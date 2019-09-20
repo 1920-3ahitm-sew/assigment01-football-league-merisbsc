@@ -30,13 +30,8 @@ public class League {
         return newTeam;
     }
 
-    public void getTable() {
+    public List<Team> getTable() {
         Collections.sort(teams);
-
-        System.out.format("%18s   %s   %s    %s    %s   %s   %s   %s\n","Team","Pts","W","D","L","GF","GA","GD");
-        for (Team team : teams) {
-            //System.out.println(team.getName() + "      " + team.getPoints() + "   " + team.getWins() + "   " + team.getDraws() + "   " + team.getDefeats() + "   " + team.getGoalsShot() + "   " + team.getGoalsReceived() + "   " + team.getGoalDifference());
-            System.out.format("%18s   %2d   %2d   %2d   %2d   %2d   %2d   %2d\n", team.getName(), team.getPoints(),team.getWins(), team.getDraws(), team.getDefeats(), team.getGoalsShot(), team.getGoalsReceived(), team.getGoalDifference());
-        }
+        return teams;
     }
 }

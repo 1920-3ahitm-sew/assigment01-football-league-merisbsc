@@ -14,7 +14,7 @@ public class Main {
 
         String fileName = "bundesliga-1819.csv";
         readFile(fileName);
-        league.getTable();
+        printTable(league.getTable());
     }
 
     private static void readFile(String fileName) {
@@ -24,7 +24,6 @@ public class Main {
 
 
         try {
-
             lines = Files.readAllLines(Paths.get(fileName));
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -39,7 +38,10 @@ public class Main {
         }
     }
 
-    private void printTable(List<Team> teams) {
-
+    private static void printTable(List<Team> teams) {
+        System.out.format("%18s   %s   %s    %s    %s   %s   %s   %s\n","Team","Pts","W","D","L","GF","GA","GD");
+        for (Team team : teams) {
+            System.out.format("%18s   %2d   %2d   %2d   %2d   %2d   %2d   %2d\n", team.getName(), team.getPoints(),team.getWins(), team.getDraws(), team.getDefeats(), team.getGoalsShot(), team.getGoalsReceived(), team.getGoalDifference());
+        }
     }
 }
