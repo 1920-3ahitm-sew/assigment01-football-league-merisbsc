@@ -50,14 +50,26 @@ public class Team extends League implements Comparable<Team>{
 
     public void addMatch(Match match) {
         //points & wins ausrechnen
-        if (match.getHomeGoals() > match.getGuestGoals()) {
-            points += 3;
-            wins++;
-        } else if (match.getHomeGoals() == match.getGuestGoals()) {
-            points++;
-            draws++;
+        if (match.getHomeName().equals(this.getName())) {
+            if (match.getHomeGoals() > match.getGuestGoals()) {
+                points += 3;
+                wins++;
+            } else if (match.getHomeGoals() == match.getGuestGoals()) {
+                points++;
+                draws++;
+            } else {
+                defeats++;
+            }
         } else {
-            defeats++;
+            if (match.getHomeGoals() < match.getGuestGoals()) {
+                points += 3;
+                wins++;
+            } else if (match.getHomeGoals() == match.getGuestGoals()) {
+                points++;
+                draws++;
+            } else {
+                defeats++;
+            }
         }
 
         goalsShot += match.getHomeGoals();
@@ -65,8 +77,13 @@ public class Team extends League implements Comparable<Team>{
     }
 
     public int compareTo(Team team2) {
-
-        return 0;
+        if (this.points > team2.points) {
+            return -1;
+        } else if (this.points < team2.points) {
+            return 1;
+        } else {
+            return Integer.compare(team2.getGoalDifference(), this.getGoalDifference());
+        }
     }
 
 }
